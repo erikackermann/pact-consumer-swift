@@ -4,7 +4,7 @@ import Alamofire
   case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 }
 
-@objc public class Interaction {
+public class Interaction {
   public var providerState: String? = nil
   public var description: String = ""
   public var request: Dictionary<String, AnyObject> = [:]
@@ -24,7 +24,7 @@ import Alamofire
   }
 
   @objc(withRequestHTTPMethod: path: query: headers: body:)
-  public func withRequest(#method: PactHTTPMethod, path: String, query: Dictionary<String, AnyObject>? = nil, headers: Dictionary<String, String>? = nil, body: AnyObject? = nil) -> Interaction {
+  public func withRequest(method method: PactHTTPMethod, path: String, query: Dictionary<String, AnyObject>? = nil, headers: Dictionary<String, String>? = nil, body: AnyObject? = nil) -> Interaction {
     request = ["method": httpMethod(method), "path": path]
     if let headersValue = headers {
       request["headers"] = headersValue
@@ -39,7 +39,7 @@ import Alamofire
   }
 
   @objc(willRespondWithHTTPStatus: headers: body:)
-  public func willRespondWith(#status: Int, headers: Dictionary<String, String>? = nil, body: AnyObject? = nil) -> Interaction {
+  public func willRespondWith(status status: Int, headers: Dictionary<String, String>? = nil, body: AnyObject? = nil) -> Interaction {
     response = ["status": status]
     if let headersValue = headers {
       response["headers"] = headersValue

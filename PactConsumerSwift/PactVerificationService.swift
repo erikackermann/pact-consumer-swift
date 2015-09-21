@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import BrightFutures
 
-@objc public class PactVerificationService {
+public class PactVerificationService {
   public let url: String
   public let port: Int
   public var baseUrl: String {
@@ -80,7 +80,7 @@ import BrightFutures
     return promise.future
   }
   
-  func verify(#provider: String, consumer: String) -> Future<String> {
+  func verify(provider provider: String, consumer: String) -> Future<String> {
     let promise = Promise<String>()
     self.verifyInteractions().onSuccess {
       result in
@@ -100,7 +100,7 @@ import BrightFutures
     return promise.future
   }
 
-  private func write(#provider: String, consumer: String) -> Future<String> {
+  private func write(provider provider: String, consumer: String) -> Future<String> {
     let promise = Promise<String>()
 
     Alamofire.request(Router.Write([ "consumer": [ "name": consumer ], "provider": [ "name": provider ] ]))

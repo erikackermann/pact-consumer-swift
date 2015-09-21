@@ -26,7 +26,7 @@ public class AnimalServiceClient {
     }
   }
 
-  public func findAnimals(#live: String, response: ([Animal]) -> Void) {
+  public func findAnimals(live live: String, response: ([Animal]) -> Void) {
     Alamofire.request(.GET, "\(baseUrl)/animals", parameters: [ "live": live])
     .responseJSON {
       (_, _, json, error) in
@@ -40,7 +40,7 @@ public class AnimalServiceClient {
     }
   }
 
-  public func eat(#animal: String, success: () -> Void, error: (Int) -> Void) {
+  public func eat(animal animal: String, success: () -> Void, error: (Int) -> Void) {
     Alamofire.request(.PATCH, "\(baseUrl)/alligator/eat", parameters: [ "type" : animal ], encoding: .JSON)
     .responseJSON { (_, response, json, errorResponse) in
       if let errorVal = errorResponse {
@@ -51,7 +51,7 @@ public class AnimalServiceClient {
     }
   }
 
-  public func wontEat(#animal: String, success: () -> Void, error: (Int) -> Void) {
+  public func wontEat(animal animal: String, success: () -> Void, error: (Int) -> Void) {
     Alamofire.request(.DELETE, "\(baseUrl)/alligator/eat", parameters: [ "type" : animal ], encoding: .JSON)
     .responseJSON { (_, response, json, errorResponse) in
       if let errorVal = errorResponse {
